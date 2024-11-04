@@ -17,6 +17,8 @@ import JobDetailsForm from "./JobDetailsForm";
 import RequisitionForm from "./RequisitionDetailsForm";
 import DisplayCard from "./PreviewCard";
 import { PageNumbers } from "../../interface/home";
+import { IRequisitionDetails, IJobDetails, IInterViewSettings } from "../../interface/forms"; // Import your interfaces
+
 
 const CustomTab: React.FC<TabProps> = ({ children, ...props }) => {
   return (
@@ -28,9 +30,26 @@ const CustomTab: React.FC<TabProps> = ({ children, ...props }) => {
 
 const HomeLayout = () => {
   const [page, setPage] = useState<PageNumbers>(0);
-  const [requisitionDetails, setRequisitionDetails] = useState({});
-  const [jobDetails, setJobDetails] = useState({});
-  const [interviewSettings, setInterviewSettings] = useState({});
+
+  // Initialize states with empty values based on their expected types
+  const [requisitionDetails, setRequisitionDetails] = useState<IRequisitionDetails>({
+    requisitionTitle: "",
+    noOfOpenings: 0,
+    urgency: "",
+    gender: "",
+  });
+  
+  const [jobDetails, setJobDetails] = useState<IJobDetails>({
+    jobTitle: "",
+    jobDetails: "",
+    jobLocation: "",
+  });
+
+  const [interviewSettings, setInterviewSettings] = useState<IInterViewSettings>({
+    interviewMode: "",
+    interviewDuration: "",
+    interviewLanguage: "",
+  });
 
   const handlePage = (pageNumber: PageNumbers) => {
     setPage(pageNumber);
@@ -73,5 +92,3 @@ const HomeLayout = () => {
 };
 
 export default HomeLayout;
-
-
